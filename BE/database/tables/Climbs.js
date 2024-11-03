@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+
+
 const climbSchema = new mongoose.Schema({
     name: { type: String },
     grade: { type: String, required: true },
@@ -7,9 +9,9 @@ const climbSchema = new mongoose.Schema({
     location: { type: String },
     dateClimbed: { type: Date, default: Date.now },
     color: { type: String },
-    userId: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
     attempts: { type: Number, default: 1 },
-    sent: { type: Boolean, default: False }
+    sent: { type: Boolean, default: false }
 });
 
 module.exports = mongoose.model('Climb', climbSchema);
