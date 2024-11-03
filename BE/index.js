@@ -1,11 +1,18 @@
+// app.js
 const express = require('express');
+const { connectToDb } = require('./config/db');
+
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+(async function initializeApp() {
+    try {
+        const db = await connectToDb().catch(console.dir);
+    } catch (error) {
+        console.error("Could not start the server:", error);
+        process.exit(1);
+    }
+})();
 
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(3000, () => {
+    console.log("Server is running on port 3000");
 });
